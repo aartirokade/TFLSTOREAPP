@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>Product Catalog</title>
+         <!--Step 1 : link jQuery file avaialble remotely-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+            <h1>Todays Fresh Flowers available for sale...</h1>
+            <hr/>
+            <button>GetFlowers</button>
+            <ol id="flowerslist">
+            </ol>
+            <p id="para"> </p>
+            <script>
+           
+                    $(document).ready(function(){
+                    
+                      $("button").click(function(){
+                        //Step 4:
+                        //get data from server using $.get method
+
+                           console.log("button is clicked...")
+                           var p=document.getElementById("para");
+
+
+                        
+                           $.get("/api/flowers", function(data, status){
+                               
+                                for(var i=0;i<data.length;i++)
+                                {  
+                                    p.innerHTML=p.innerHTML + " " +data[i].name;
+                                }                                                                               
+                                });
+                       });
+                    });
+            </script>
+    </body>
+</html>
